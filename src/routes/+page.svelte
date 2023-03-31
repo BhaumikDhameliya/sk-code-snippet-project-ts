@@ -1,6 +1,7 @@
 <script lang="ts">
 	import CodeSnippetCard from '../components/CodeSnippetCard.svelte';
 	import { snippetStore, addSnippet } from '../SnippetStore';
+	import { programmingLanguages } from '../utils/programmingLanguages';
 	import type { PageData } from './$types';
 	export let data: PageData;
 
@@ -34,9 +35,9 @@
 			<label class="label">
 				<span>Programming Language</span>
 				<select class="select" bind:value={formData.language}>
-					<option value="html">HTML</option>
-					<option value="css">CSS</option>
-					<option value="typescript">TypeScript</option>
+					{#each programmingLanguages as lang}
+						<option value={lang.toLocaleLowerCase()}>{lang}</option>
+					{/each}
 				</select>
 			</label>
 			<label class="label">
